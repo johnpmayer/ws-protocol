@@ -1,0 +1,15 @@
+<html>
+  <body>
+    <script>
+      var ws = new WebSocket("wss://162.243.106.166:9000/");
+      var print = function(label) { 
+        return function(event) {
+          console.log(label, event);
+        };
+      };
+      ws.onopen = print("open");
+      ws.onerror = print("error");
+      ws.onmessage = print("message");
+    </script>
+  </body>
+</html>
