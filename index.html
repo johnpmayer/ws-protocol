@@ -1,15 +1,18 @@
 <html>
   <body>
     <script>
-      var ws = new WebSocket("ws://162.243.106.166:9000/");
-      var print = function(label) { 
-        return function(event) {
-          console.log(label, event);
+      var f = function () {
+        var ws = new WebSocket("ws://localhost:9000/");
+        var print = function(label) { 
+          return function(event) {
+            console.log(label, event);
+          };
         };
-      };
-      ws.onopen = print("open");
-      ws.onerror = print("error");
-      ws.onmessage = print("message");
+        ws.onopen = print("open");
+        ws.onerror = print("error");
+        ws.onmessage = print("message");
+        return ws;
+      }
     </script>
   </body>
 </html>
