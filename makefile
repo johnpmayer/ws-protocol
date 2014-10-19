@@ -1,11 +1,11 @@
 
-all: exe
+all: run
 
 clean:
 	cargo clean
 
 run: exe
-	cargo run
+	cargo run --verbose
 
 exe: target\ws-server.exe
 

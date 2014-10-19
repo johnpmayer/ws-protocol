@@ -9,6 +9,7 @@
           };
         };
         ws.onopen = print("open");
+        ws.onclose = print("close");
         ws.onerror = print("error");
         ws.onmessage = print("message");
         return ws;
