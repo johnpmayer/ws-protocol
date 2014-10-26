@@ -135,8 +135,15 @@ fn ws_recv(mut stream: TcpStream) -> IoResult<String> {
     let length: uint = match len1 {
         _ if len1 <= 125 =>
             some!(FromPrimitive::from_u8(len1), genericError!("Conversion error")),
+        _ if len1 == 126 => {
+                let mut l: [u8, ..2] = [0, ..2];
+                try!(stream.read(l));
+                let high: uint = some!(FromPrimitive::from_u8(l[0]), genericError!("Conversion error"));
+                let low: uint = some!(FromPrimitive::from_u8(l[1]), genericError!("Conversion error"));
+                (high << 8) | low
+            }
         _ =>
-            return genericError!("TODO ws_recv len cases")
+            return genericError!("TODO message length > 65535")
     };
     
     println!("Receiving message with {} bytes", length);
@@ -156,20 +163,18 @@ fn ws_recv(mut stream: TcpStream) -> IoResult<String> {
     
 }
 
-fn handle_client(mut stream: TcpStream) -> IoResult<()> {
+fn handle_client(stream: TcpStream) -> IoResult<()> {
 
     println!("Handling client");
     
     try!(perform_handshake(stream.clone()));
     
-    ws_send(stream.clone(), "Test message".as_bytes());
+    try!(ws_send(stream.clone(), "Test message".as_bytes()));
     
     loop {
         let msg = try!(ws_recv(stream.clone()));
-        ws_send(stream.clone(), msg.as_bytes());
+        try!(ws_send(stream.clone(), msg.as_bytes()));
     }
-    
-    Ok(())
     
 }
 
