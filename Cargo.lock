@@ -1,5 +1,5 @@
 [root]
-name = "ws-server"
+name = "ws"
 version = "0.1.0"
 dependencies = [
  "rust-crypto 0.1.0 (git+https://github.com/DaGenix/rust-crypto.git#4105f2a180701f67905939a2260b1fd0832fe253)",
