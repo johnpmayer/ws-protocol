@@ -1,0 +1,9 @@
+[package]
+
+name = "ws-server-example"
+version = "0.1.0"
+authors = ["John P Mayer Jr <john.p.mayer.jr@gmail.com>"]
+
+[dependencies.ws]
+
+git = "https://github.com/johnpmayer/rust-ws-server.git"

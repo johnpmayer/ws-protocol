@@ -1,0 +1,20 @@
+[root]
+name = "ws-server-example"
+version = "0.1.0"
+dependencies = [
+ "ws 0.1.0 (git+https://github.com/johnpmayer/rust-ws-server.git#278f510f25e86debe50bd72a708d9f67571d8677)",
+]
+
+[[package]]
+name = "rust-crypto"
+version = "0.1.0"
+source = "git+https://github.com/DaGenix/rust-crypto.git#4105f2a180701f67905939a2260b1fd0832fe253"
+
+[[package]]
+name = "ws"
+version = "0.1.0"
+source = "git+https://github.com/johnpmayer/rust-ws-server.git#278f510f25e86debe50bd72a708d9f67571d8677"
+dependencies = [
+ "rust-crypto 0.1.0 (git+https://github.com/DaGenix/rust-crypto.git#4105f2a180701f67905939a2260b1fd0832fe253)",
+]
+
